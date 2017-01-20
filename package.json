@@ -1,0 +1,35 @@
+{
+  "name": "spatial-virtual-dom",
+  "version": "0.0.0",
+  "description": "Virtual DOM with spatial navigation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linuxenko/spatial-virtual-dom.git"
+  },
+  "author": "Svetlana Linuxenko <linuxenko@yahoo.com> (http://www.linuxenko.pro)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/linuxenko/spatial-virtual-dom/issues"
+  },
+  "homepage": "https://github.com/linuxenko/spatial-virtual-dom#readme",
+  "devDependencies": {
+    "browserify": "^13.3.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.13.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "karma": "^1.4.0",
+    "karma-browserify": "^5.1.0",
+    "karma-chai": "^0.1.0",
+    "karma-cli": "^1.0.1",
+    "karma-mocha": "^1.3.0",
+    "karma-nyan-reporter": "^0.2.5",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "watchify": "^3.8.0"
+  }
+}
