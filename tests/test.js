@@ -11,4 +11,7 @@ describe('Testing tests', function () {
   it('should check something else', function () {
     expect(true).to.be.true;
   });
+  it('should break the tests', function () {
+//    expect(false, 'breaking breaks').to.be.true;
+  });
 });

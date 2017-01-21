@@ -6,7 +6,8 @@
         "promise"
     ],
     "rules" : {
-      "semi" : [ "error", "always" ]
+      "semi" : [ "error", "always" ],
+      "standard/object-curly-even-spacing": [2, "either"]
     },
     "globals" : {
       "describe" : true,
