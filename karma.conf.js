@@ -13,12 +13,14 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'lib/**/*.js',
       'tests/**/*.js'
     ],
 
     browserify: {
       // debug makes it generate source maps
-      debug: true
+      debug: true,
+      transform: ['browserify-istanbul']
     },
 
     // list of files to exclude
@@ -28,13 +30,14 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'lib/**/*.js': ['browserify'],
       'tests/**/*.js': ['browserify']
     },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['nyan'],
+    reporters: ['progress', 'coverage', 'coveralls'],
 
     // web server port
     port: 9876,
@@ -44,7 +47,7 @@ module.exports = function (config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_WARN,
+    logLevel: config.LOG_ERROR,
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
@@ -55,7 +58,15 @@ module.exports = function (config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
+
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'coverage/',
+      instrumenterOptions: {
+        istanbul: { noCompact: true }
+      }
+    },
 
     // Concurrency level
     // how many browser should be started simultaneous
