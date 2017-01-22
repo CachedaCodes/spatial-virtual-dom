@@ -47,14 +47,14 @@ exports.d = h(
   null,
   h(
     'span',
-    { id : 'text-node', className : 'text-node' },
+    { id: 'text-node', className: 'text-node' },
     'node-text'
   )
 );
 
 exports.e = h(
   'div',
-  { 'data-name' : 'to remove',  className : 'test-class' },
+  { 'data-name': 'to remove', className: 'test-class' },
   h(
     'div',
     null,

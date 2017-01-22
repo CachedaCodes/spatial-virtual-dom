@@ -72,13 +72,13 @@ exports.tree2 = h(
   ),
   h(
     'ul',
-    { className : 'test test' },
+    { className: 'test test' },
     h(
       'li',
       null,
       h(
         'span',
-        { className : 'llll', id : 'kkkkk' },
+        { className: 'llll', id: 'kkkkk' },
         'Item changed text 1'
       )
     ),

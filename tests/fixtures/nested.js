@@ -72,7 +72,6 @@ exports.b = h(
   )
 );
 
-
 exports.a1 = h(
   'div',
   { id: 'app', className: 'changed-class' },
