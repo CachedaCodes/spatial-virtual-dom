@@ -56,6 +56,7 @@ describe('Spatial tests', function () {
     expect(sn._focus).to.be.equal(elements[0]);
 
     elements.map(function (e) { document.body.removeChild(e); });
+    sn.setCollection(null);
   });
 
   it('should navigate inside of layout', function () {
@@ -82,5 +83,6 @@ describe('Spatial tests', function () {
     sn.move('left');
     sn.move('left');
     expect(sn._focus).to.be.equal(elements[2]);
+    sn.setCollection(null);
   });
 });
