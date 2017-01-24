@@ -6,14 +6,13 @@ Spatial navigation ([MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Firef
 
 ### Initialization
 
-Virtual DOM initiazliation with configurabe `spatial` function.
+Virtual DOM initiazliation with configurable `spatial` function.
 
 **`spatial(options)`**
 
 Options:
   * `autofocus` automatically focus when window loose its focus.
-  * `keys` setup of preconfigured key codes.
-
+  * `keys` preconfigured key codes.
 
 ### License
 
