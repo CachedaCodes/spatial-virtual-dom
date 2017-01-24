@@ -39,6 +39,7 @@ describe('H spatial tests', function () {
     var c = h('div', null, h('div', { focusable: true }, ''));
 
     c.render();
+    c.sn.focus();
     expect(c.sn._focus).to.be.instanceof(window.HTMLDivElement);
     c.sn.unfocus();
     expect(c.sn._focus).to.be.null;
@@ -50,7 +51,6 @@ describe('H spatial tests', function () {
 
     var dom = c.render();
 
-    c.sn.unfocus();
     document.body.appendChild(dom);
     expect(c.sn._focus).to.be.null;
     syn.click(dom.childNodes[0], function () {
@@ -80,8 +80,9 @@ describe('H spatial tests', function () {
 
     var dom = c.render();
     document.body.appendChild(dom);
+    c.sn.focus();
 
-    dom.childNodes[1].addEventListener('onfocus', function () {
+    dom.childNodes[1].addEventListener('focus', function () {
       done();
     });
 
@@ -94,8 +95,9 @@ describe('H spatial tests', function () {
 
     var dom = c.render();
     document.body.appendChild(dom);
+    c.sn.focus();
 
-    dom.childNodes[0].addEventListener('onunfocus', function () {
+    dom.childNodes[0].addEventListener('unfocus', function () {
       done();
     });
 
@@ -108,11 +110,52 @@ describe('H spatial tests', function () {
 
     var dom = c.render();
     document.body.appendChild(dom);
+    c.sn.focus();
 
-    dom.childNodes[0].addEventListener('onunfocus', function () {
+    dom.childNodes[0].addEventListener('unfocus', function () {
       done();
     });
 
     syn.type(dom.childNodes[0], '[down]');
+  });
+
+  it('should fire enter events on focused node only', function (done) {
+    var h = require('../').spatial({ autofocus: true, keys: keys });
+    var c = h('div', null, h('div', { focusable: true }, 'one'), h('div', { focusable: true }, 'two'));
+
+    var dom = c.render();
+    document.body.appendChild(dom);
+
+    dom.childNodes[0].addEventListener('enter', function () {
+      done();
+    });
+
+    syn.type(dom.childNodes[0], '[enter]');
+  });
+
+  it('should fire click/enter events on focused node only', function (done) {
+    var h = require('../').spatial({ autofocus: true, keys: keys });
+    var c = h('div', null, h('div', { focusable: true }, 'one'), h('div', { focusable: true }, 'two'));
+
+    var dom = c.render();
+    document.body.appendChild(dom);
+
+    dom.childNodes[0].addEventListener('enter', function () {
+      done();
+    });
+
+    syn.click(dom.childNodes[0]);
+  });
+
+  it('should focusable has tabindex prop', function () {
+    var h = require('../').spatial();
+    var c = h('div', null, h('div', { focusable: true }, ''));
+    var p = h('div', null, h('div', { focusable: false }, ''));
+
+    var dom = c.render();
+
+    expect(dom.childNodes[0].getAttribute('tabindex')).to.be.equal('0');
+    patch(c, diff(c, p));
+    expect(dom.childNodes[0].getAttribute('tabindex')).not.be.exists;
   });
 });
