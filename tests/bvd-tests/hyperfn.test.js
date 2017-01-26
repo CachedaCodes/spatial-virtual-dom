@@ -37,5 +37,26 @@ describe('HyperFn Tests', function () {
     expect(a.children[0].props.className).to.be.equal('composer-section');
     expect(a.children[0].children[0].tag).to.be.equal('a');
   });
+
+  it('should handle composer function with multiple children', function () {
+    var composer = function (props, children) {
+      var args = ['div', props].concat([].slice.call(arguments, 1, arguments.length));
+      return h.apply(null, args);
+    };
+
+    var a = h('span', null, h(composer, { className: 'hello-composer' },
+      h('a', null, 'hello'),
+      h('a', null, 'hello'),
+      h('a', null, 'hello'),
+      h('a', null, 'hello'),
+      h('a', null, 'hello')
+    ));
+
+    expect(a.tag).to.be.equal('span');
+    expect(a.children[0].tag).to.be.equal('div');
+    expect(a.children[0].props.className).to.be.equal('hello-composer');
+    expect(a.children[0].children[0].tag).to.be.equal('a');
+    expect(a.children[0].children.length).to.be.equal(5);
+  });
 });
 
