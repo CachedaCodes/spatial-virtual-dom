@@ -13,6 +13,7 @@ Virtual DOM initiazliation with configurable `spatial` function.
 Options:
   * `autofocus` automatically focus when window loose its focus.
   * `keys` preconfigured key codes.
+  * `evtNamePostfix` custom event postfix (default: sn)
 
 ### License
 

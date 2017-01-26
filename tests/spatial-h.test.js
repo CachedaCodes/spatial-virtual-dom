@@ -82,7 +82,7 @@ describe('H spatial tests', function () {
     document.body.appendChild(dom);
     c.sn.focus();
 
-    dom.childNodes[1].addEventListener('focus', function () {
+    dom.childNodes[1].addEventListener('focussn', function () {
       done();
     });
 
@@ -97,7 +97,7 @@ describe('H spatial tests', function () {
     document.body.appendChild(dom);
     c.sn.focus();
 
-    dom.childNodes[0].addEventListener('unfocus', function () {
+    dom.childNodes[0].addEventListener('unfocussn', function () {
       done();
     });
 
@@ -112,7 +112,7 @@ describe('H spatial tests', function () {
     document.body.appendChild(dom);
     c.sn.focus();
 
-    dom.childNodes[0].addEventListener('unfocus', function () {
+    dom.childNodes[0].addEventListener('unfocussn', function () {
       done();
     });
 
@@ -126,7 +126,21 @@ describe('H spatial tests', function () {
     var dom = c.render();
     document.body.appendChild(dom);
 
-    dom.childNodes[0].addEventListener('enter', function () {
+    dom.childNodes[0].addEventListener('entersn', function () {
+      done();
+    });
+
+    syn.type(dom.childNodes[0], '[enter]');
+  });
+
+  it('should custon event postfix', function (done) {
+    var h = require('../').spatial({ evtNamePostfix: 'xx', autofocus: true, keys: keys }, true);
+    var c = h('div', null, h('div', { focusable: true }, 'one'), h('div', { focusable: true }, 'two'));
+
+    var dom = c.render();
+    document.body.appendChild(dom);
+
+    dom.childNodes[0].addEventListener('enterxx', function () {
       done();
     });
 
@@ -134,13 +148,13 @@ describe('H spatial tests', function () {
   });
 
   it('should fire click/enter events on focused node only', function (done) {
-    var h = require('../').spatial({ autofocus: true, keys: keys });
+    var h = require('../').spatial({ evtNamePostfix: 'sn', autofocus: true, keys: keys }, true);
     var c = h('div', null, h('div', { focusable: true }, 'one'), h('div', { focusable: true }, 'two'));
 
     var dom = c.render();
     document.body.appendChild(dom);
 
-    dom.childNodes[0].addEventListener('enter', function () {
+    dom.childNodes[0].addEventListener('entersn', function () {
       done();
     });
 
