@@ -1,6 +1,6 @@
 {
   "name": "spatial-virtual-dom",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Virtual DOM with spatial navigation",
   "main": "index.js",
   "scripts": {
