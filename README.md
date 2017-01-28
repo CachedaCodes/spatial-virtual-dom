@@ -14,6 +14,7 @@ Options:
   * `autofocus` automatically focus when window loose its focus.
   * `keys` preconfigured key codes.
   * `evtNamePostfix` custom event postfix (default: sn)
+  * `preventKeys` prevent browser's defaults for navigation keys
 
 ### License
 
