@@ -1,6 +1,6 @@
 {
   "name": "spatial-virtual-dom",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Virtual DOM with spatial navigation",
   "main": "index.js",
   "scripts": {
@@ -38,6 +38,7 @@
     "karma-nyan-reporter": "^0.2.5",
     "karma-phantomjs-launcher": "^1.0.2",
     "mocha": "^3.2.0",
+    "sinon": "^2.1.0",
     "syn": "^0.2.2",
     "watchify": "^3.8.0"
   }

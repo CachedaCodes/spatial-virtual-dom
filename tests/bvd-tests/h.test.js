@@ -1,4 +1,5 @@
 var expect = require('chai').expect;
+var sinon = require('sinon');
 
 var a = require('../fixtures/simple').a;
 var d = require('../fixtures/simple').d;
@@ -126,5 +127,38 @@ describe('Test h()', function () {
     );
 
     expect(p.children[3].tag).to.be.equal('div');
+  });
+
+  it('should handle nesting functions', function () {
+    var rendered = sinon.spy();
+    var Nested = {
+      render: function () {
+        rendered();
+        return h('div', null, this.props.name, this.props.children);
+      }
+    };
+
+    var cl = h('div', null, h(Nested, {name: 'hello'}, 'world'));
+
+    expect(rendered.calledOnce).to.be.true;
+    expect(cl.children[0].children.length).to.be.equal(2);
+    expect(cl.children[0].children[0].children).to.be.equal('hello');
+    expect(cl.children[0].children[1].children).to.be.equal('world');
+  });
+
+  it('should only update props', function () {
+    var Nested = {
+      props: { ownProp: 'keepme' },
+      render: function () {
+        return h('div', null, this.props.name, this.props.children, this.props.ownProp);
+      }
+    };
+
+    var cl = h('div', null, h(Nested, {name: 'hello'}, 'world'));
+
+    expect(cl.children[0].children.length).to.be.equal(3);
+    expect(cl.children[0].children[0].children).to.be.equal('hello');
+    expect(cl.children[0].children[1].children).to.be.equal('world');
+    expect(cl.children[0].children[2].children).to.be.equal('keepme');
   });
 });
